@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">IntervalTimer</string>
+    <string name="hint_interval">Interval (sec)</string>
+</resources>

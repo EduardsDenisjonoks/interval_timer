@@ -1,0 +1,42 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppModeButton">
+        <item name="android:padding">@dimen/small_8</item>
+        <item name="android:layout_margin">@dimen/small_8</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:tint">@color/btn_tint_main</item>
+    </style>
+
+    <style name="DefaultButton">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:tint">@color/btn_tint_main</item>
+    </style>
+
+    <style name="InputView" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/input_outline_color</item>
+        <item name="android:textColorHint">@color/text_main</item>
+        <item name="hintTextAppearance">@style/LabelAppearance</item>
+    </style>
+
+    <style name="LabelAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textColor">@color/input_outline_color</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+    <style name="TextAppearance" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+
+</resources>

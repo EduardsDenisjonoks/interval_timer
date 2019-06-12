@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+} else {
+    keystoreProperties.put('KEYSTORE_ALIAS', "")
+    keystoreProperties.put('KEY_PASSWORD', "")
+    keystoreProperties.put('KEYSTORE_LOCATION', "gradle.properties")
+    keystoreProperties.put('KEYSTORE_PASSWORD', "")
+}
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.exail.intervaltimer"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    signingConfigs {
+        IntervalTimer {
+            keyAlias keystoreProperties['KEYSTORE_ALIAS']
+            keyPassword keystoreProperties['KEY_PASSWORD']
+            storeFile file(keystoreProperties['KEYSTORE_LOCATION'])
+            storePassword keystoreProperties['KEYSTORE_PASSWORD']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    androidExtensions {
+        experimental = true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+    /*KOIN*/
+    implementation 'org.koin:koin-android-viewmodel:2.0.0-GA4'
+    /*VIEW MODEL SCOPE*/
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
