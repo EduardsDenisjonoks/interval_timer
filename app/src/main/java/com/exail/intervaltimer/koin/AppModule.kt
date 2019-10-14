@@ -1,6 +1,6 @@
 package com.exail.intervaltimer.koin
 
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.exail.intervaltimer.data.AppCache
 import com.exail.intervaltimer.view.model.TimerViewModel
 import org.koin.android.viewmodel.dsl.viewModel
