@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">IntervalTimer</string>
     <string name="hint_interval">Interval (sec)</string>
+
+    <string name="cd_btn_dark_light_mode">Button to toggle dark/light mode</string>
+    <string name="cd_btn_reset_timer">Timer reset button</string>
+    <string name="cd_btn_play_pause">Play/pause button</string>
 </resources>

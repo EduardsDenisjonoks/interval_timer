@@ -22,6 +22,7 @@
             android:layout_width="@dimen/icon_medium"
             android:layout_height="@dimen/icon_medium"
             android:src="@drawable/ic_app_mode"
+            android:contentDescription="@string/cd_btn_dark_light_mode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +67,7 @@
                 android:maxLength="5"
                 android:text="@={timerVm.interval}"
                 android:textColor="@color/text_main"
-                android:textSize="@dimen/text_16" />
+                android:textSize="@dimen/text_18" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,6 +76,7 @@
             style="@style/DefaultButton"
             android:layout_width="@dimen/icon_big"
             android:layout_height="@dimen/icon_big"
+            android:contentDescription="@string/cd_btn_play_pause"
             app:image_res="@{timerVm.icon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +91,7 @@
             android:layout_height="@dimen/icon_medium"
             android:layout_marginEnd="@dimen/big_24"
             android:src="@drawable/ic_reset"
+            android:contentDescription="@string/cd_btn_reset_timer"
             app:layout_constraintBottom_toBottomOf="@+id/btn_main_action"
             app:layout_constraintEnd_toStartOf="@+id/btn_main_action"
             app:layout_constraintTop_toTopOf="@+id/btn_main_action" />
