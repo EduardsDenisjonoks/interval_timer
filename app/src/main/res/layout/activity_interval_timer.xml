@@ -67,7 +67,7 @@
                 android:maxLength="5"
                 android:text="@={timerVm.interval}"
                 android:textColor="@color/text_main"
-                android:textSize="@dimen/text_18" />
+                android:textSize="@dimen/text_20" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
