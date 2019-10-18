@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IntervalTimer</string>
+    <string name="app_name">Interval Timer</string>
     <string name="hint_interval">Interval (sec)</string>
 
     <string name="cd_btn_dark_light_mode">Button to toggle dark/light mode</string>
