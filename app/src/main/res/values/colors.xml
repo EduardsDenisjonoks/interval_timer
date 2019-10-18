@@ -4,7 +4,7 @@
     <color name="colorPrimary">#2F2E36</color>
     <color name="colorSecondary">#9497C5</color>
     <color name="colorPrimaryDark">#212026</color>
-    <color name="colorAccent">#8647DF</color>
+    <color name="colorAccent">#9259E0</color>
     <color name="ic_launcher_background">#FFFFFF</color>
 
     <color name="light">#F6F6F6</color>
@@ -12,7 +12,6 @@
     <color name="text_main">@color/light</color>
 
     <color name="btn_tint_main">@color/colorAccent</color>
-
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/colorAccent</color>
 </resources>
