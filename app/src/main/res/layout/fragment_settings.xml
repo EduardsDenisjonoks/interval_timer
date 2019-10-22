@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SettingsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- APP THEM -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/app_theme_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_16"
+                style="@style/LabelSettings"
+                app:layout_constraintTop_toTopOf="@+id/btn_app_mode"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_app_mode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_app_mode"
+                tools:text="App them: Day mode"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_app_mode"
+                style="@style/AppModeButton"
+                android:layout_width="@dimen/icon_medium"
+                android:layout_height="@dimen/icon_medium"
+                android:src="@drawable/ic_app_mode"
+                android:contentDescription="@string/cd_btn_dark_light_mode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/app_theme_barrier"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="app_theme_value, btn_app_mode"/>
+
+            <!-- VIBRATION -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/vibration_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_16"
+                style="@style/LabelSettings"
+                app:layout_constraintTop_toTopOf="@+id/vibration_switch"
+                app:layout_constraintBottom_toBottomOf="@+id/vibration_switch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Vibration: On"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/vibration_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_16"
+                android:padding="@dimen/medium_16"
+                app:layout_constraintTop_toBottomOf="@+id/app_theme_barrier"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/vibration_barrier"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="vibration_value, vibration_switch"/>
+
+            <!-- SOUND LIST -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/sounds_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_16"
+                android:layout_marginEnd="@dimen/medium_16"
+                android:layout_marginTop="@dimen/custom_32"
+                style="@style/LabelSettings"
+                app:layout_constraintTop_toBottomOf="@+id/vibration_barrier"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Sounds:"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sound_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/medium_16"
+                android:paddingBottom="@dimen/medium_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sounds_label"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
