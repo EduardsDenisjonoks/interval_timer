@@ -1,7 +1,5 @@
 package com.exail.intervaltimer.view.model
 
-import android.media.AudioManager
-import android.media.ToneGenerator
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -12,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.exail.intervaltimer.R
 import com.exail.intervaltimer.data.AppCache
 import com.exail.intervaltimer.data.TimerState
+import com.exail.intervaltimer.utils.SoundPlayer
 import com.exail.intervaltimer.utils.secondsToString
 import com.exail.intervaltimer.utils.stringToLong
 import java.util.concurrent.Executors
@@ -21,11 +20,14 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by eduardsdenisjonoks  on 2019-06-07.
  */
-class TimerViewModel constructor(private val cache: AppCache, private val vibrator: Vibrator) : ViewModel() {
+class TimerViewModel constructor(
+    private val cache: AppCache,
+    private val soundPlayer: SoundPlayer,
+    private val vibrator: Vibrator
+) : ViewModel() {
 
     private var state = TimerState.STOP
 
-    private val toneGenerator = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
     private val elapsedSeconds = MutableLiveData<Long>().apply { value = 0L }
     private val scheduler = Executors.newSingleThreadScheduledExecutor()
     private val tickRunnable = Runnable { onTick() }
@@ -93,7 +95,7 @@ class TimerViewModel constructor(private val cache: AppCache, private val vibrat
      */
     private fun onTick() {
         val latestTime = addSecond()
-        if (!isInterval(latestTime, stringToLong(interval.value))){
+        if (!isInterval(latestTime, stringToLong(interval.value))) {
             return
         }
         playSound()
@@ -112,22 +114,22 @@ class TimerViewModel constructor(private val cache: AppCache, private val vibrat
     /**
      * Check if it is interval and notification should be given
      */
-    private fun isInterval(seconds: Long, interval: Long) = interval != 0L && seconds.rem(interval) == 0L
+    private fun isInterval(seconds: Long, interval: Long) =
+        interval != 0L && seconds.rem(interval) == 0L
 
     /**
      * Play sound if matching interval
      */
     private fun playSound() {
-        toneGenerator.stopTone()
-        toneGenerator.startTone(ToneGenerator.TONE_PROP_PROMPT, 100)
+        soundPlayer.playSound(cache.getSound())
     }
 
     /**
      * Vibrate if enabled
      */
     @Suppress("DEPRECATION")
-    private fun vibrate(){
-        if (!cache.getVibration()){
+    private fun vibrate() {
+        if (!cache.getVibration()) {
             return
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -145,6 +147,6 @@ class TimerViewModel constructor(private val cache: AppCache, private val vibrat
     override fun onCleared() {
         super.onCleared()
         scheduledFuture?.cancel(true)
-        toneGenerator.release()
+        soundPlayer.stop(true)
     }
 }

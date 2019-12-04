@@ -27,6 +27,11 @@ fun AppCompatImageView.setImageRes(@DrawableRes imageRes: Int?){
     }
 }
 
+@BindingAdapter("is_gone")
+fun View.isGone(isGone: Boolean = false) {
+    visibility = if (isGone) View.GONE else View.VISIBLE
+}
+
 //region NAVIGATION
 fun View.navigateTo(@IdRes destination: Int, bundle: Bundle? = null) {
     try {
