@@ -2,6 +2,9 @@ package com.exail.intervaltimer.view.model
 
 import android.media.AudioManager
 import android.media.ToneGenerator
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -18,7 +21,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by eduardsdenisjonoks  on 2019-06-07.
  */
-class TimerViewModel constructor(cache: AppCache) : ViewModel() {
+class TimerViewModel constructor(private val cache: AppCache, private val vibrator: Vibrator) : ViewModel() {
 
     private var state = TimerState.STOP
 
@@ -89,7 +92,12 @@ class TimerViewModel constructor(cache: AppCache) : ViewModel() {
      * On timer tick add second and play sound if matches requirement
      */
     private fun onTick() {
-        playSound(addSecond(), stringToLong(interval.value))
+        val latestTime = addSecond()
+        if (!isInterval(latestTime, stringToLong(interval.value))){
+            return
+        }
+        playSound()
+        vibrate()
     }
 
     /**
@@ -102,15 +110,32 @@ class TimerViewModel constructor(cache: AppCache) : ViewModel() {
     }
 
     /**
+     * Check if it is interval and notification should be given
+     */
+    private fun isInterval(seconds: Long, interval: Long) = interval != 0L && seconds.rem(interval) == 0L
+
+    /**
      * Play sound if matching interval
      */
-    private fun playSound(seconds: Long, interval: Long) {
-        if (interval != 0L && seconds.rem(interval) == 0L) {
-            toneGenerator.stopTone()
-            toneGenerator.startTone(ToneGenerator.TONE_PROP_PROMPT, 100)
-        }
+    private fun playSound() {
+        toneGenerator.stopTone()
+        toneGenerator.startTone(ToneGenerator.TONE_PROP_PROMPT, 100)
     }
 
+    /**
+     * Vibrate if enabled
+     */
+    @Suppress("DEPRECATION")
+    private fun vibrate(){
+        if (!cache.getVibration()){
+            return
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {//Deprecated since 26
+            vibrator.vibrate(500)
+        }
+    }
     //endregion
 
 

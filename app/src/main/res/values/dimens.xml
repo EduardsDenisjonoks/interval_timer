@@ -13,6 +13,8 @@
     <dimen name="icon_medium">48dp</dimen>
     <dimen name="icon_big">80dp</dimen>
 
+    <dimen name="view_indicator">4dp</dimen>
+
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_14">14sp</dimen>
     <dimen name="text_16">16sp</dimen>

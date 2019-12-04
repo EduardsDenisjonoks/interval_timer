@@ -11,6 +11,7 @@ class AppCache(private val prefs: SharedPreferences) {
     companion object {
         private const val APP_MODE = "com.exail.intervaltimer.data.app_mode"
         private const val INTERVAL = "com.exail.intervaltimer.data.interval"
+        private const val VIBRATION = "com.exail.intervaltimer.data.vibration"
     }
 
     //region APP MODE - DARK or LIGHT side, what will you choose
@@ -23,5 +24,11 @@ class AppCache(private val prefs: SharedPreferences) {
     fun setInterval(interval: Long) = prefs.edit().putLong(INTERVAL, interval).apply()
 
     fun getInterval() = prefs.getLong(INTERVAL, 0L)
+    //endregion
+
+    //region VIBRATION - enable disable vibration on  interval
+    fun setVibration(isEnabled: Boolean) = prefs.edit().putBoolean(VIBRATION, isEnabled).apply()
+
+    fun getVibration() = prefs.getBoolean(VIBRATION, true)
     //endregion
 }

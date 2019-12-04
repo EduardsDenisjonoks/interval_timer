@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="app_theme_value, btn_app_mode"/>
+                app:constraint_referenced_ids="app_theme_value,btn_app_mode"/>
 
             <!-- VIBRATION -->
             <androidx.appcompat.widget.AppCompatTextView
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toTopOf="@+id/vibration_switch"
                 app:layout_constraintBottom_toBottomOf="@+id/vibration_switch"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vibration_switch"
                 tools:text="Vibration: On"/>
 
             <androidx.appcompat.widget.SwitchCompat
@@ -71,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="vibration_value, vibration_switch"/>
+                app:constraint_referenced_ids="vibration_value,vibration_switch"/>
 
             <!-- SOUND LIST -->
             <androidx.appcompat.widget.AppCompatTextView
@@ -82,10 +82,10 @@
                 android:layout_marginEnd="@dimen/medium_16"
                 android:layout_marginTop="@dimen/custom_32"
                 style="@style/LabelSettings"
+                android:text="@string/settings_sounds"
                 app:layout_constraintTop_toBottomOf="@+id/vibration_barrier"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Sounds:"/>
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sound_list"
@@ -98,8 +98,8 @@
                 android:paddingBottom="@dimen/medium_16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sounds_label"/>
-
+                app:layout_constraintTop_toBottomOf="@+id/sounds_label"
+                tools:listitem="@layout/item_sound"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

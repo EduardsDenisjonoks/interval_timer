@@ -1,102 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:keepScreenOn="true"
     tools:context=".IntervalTimerActivity">
 
-    <data>
-        <variable
-            name="timerVm"
-            type="com.exail.intervaltimer.view.model.TimerViewModel" />
-    </data>
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_main" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:keepScreenOn="true">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btn_app_mode"
-            style="@style/AppModeButton"
-            android:layout_width="@dimen/icon_medium"
-            android:layout_height="@dimen/icon_medium"
-            android:src="@drawable/ic_app_mode"
-            android:contentDescription="@string/cd_btn_dark_light_mode"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/timer_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_16"
-            android:text="@{timerVm.time}"
-            android:textAlignment="center"
-            android:textColor="@color/text_main"
-            android:textSize="@dimen/text_72"
-            app:layout_constraintBottom_toTopOf="@+id/interval_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_app_mode"
-            app:layout_constraintVertical_chainStyle="spread"
-            tools:text="00:00:00" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/interval_view"
-            style="@style/InputView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_16"
-            android:hint="@string/hint_interval"
-            app:layout_constraintBottom_toTopOf="@+id/btn_main_action"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timer_view"
-            app:layout_constraintVertical_bias="0.4"
-            app:layout_constraintWidth_max="280dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name_edit_text"
-                style="@style/InputView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:digits="0123456789"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:maxLength="5"
-                android:text="@={timerVm.interval}"
-                android:textColor="@color/text_main"
-                android:textSize="@dimen/text_20" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btn_main_action"
-            style="@style/DefaultButton"
-            android:layout_width="@dimen/icon_big"
-            android:layout_height="@dimen/icon_big"
-            android:contentDescription="@string/cd_btn_play_pause"
-            app:image_res="@{timerVm.icon}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/interval_view"
-            tools:src="@drawable/ic_play" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/btn_reset"
-            style="@style/DefaultButton"
-            android:layout_width="@dimen/icon_medium"
-            android:layout_height="@dimen/icon_medium"
-            android:layout_marginEnd="@dimen/big_24"
-            android:src="@drawable/ic_reset"
-            android:contentDescription="@string/cd_btn_reset_timer"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_main_action"
-            app:layout_constraintEnd_toStartOf="@+id/btn_main_action"
-            app:layout_constraintTop_toTopOf="@+id/btn_main_action" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
