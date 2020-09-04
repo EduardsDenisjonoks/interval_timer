@@ -18,6 +18,7 @@ class SoundPlayer(private val context: Context) {
         try {
             when {
                 resource == -1 -> stop(true)
+                mediaPlayer == null -> playNewSound(resource)
                 currentlyPlaying == resource -> play()
                 mediaPlayer != null -> {
                     stop(true)

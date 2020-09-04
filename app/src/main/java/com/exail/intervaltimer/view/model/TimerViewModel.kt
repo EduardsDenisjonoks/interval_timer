@@ -65,6 +65,7 @@ class TimerViewModel constructor(
     private fun pause() {
         state = TimerState.PAUSE
         updateIcon(state)
+        soundPlayer.stop()
         scheduledFuture?.cancel(true)
         scheduledFuture = null
     }

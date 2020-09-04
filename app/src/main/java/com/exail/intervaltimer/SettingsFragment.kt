@@ -48,6 +48,11 @@ class SettingsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStop() {
+        super.onStop()
+        soundPlayer.stop(true)
+    }
+
     private fun initAppModeButton(button: AppCompatImageView) {
         button.setOnClickListener {
             if (appCache.getAppMode() == AppCompatDelegate.MODE_NIGHT_YES) {
